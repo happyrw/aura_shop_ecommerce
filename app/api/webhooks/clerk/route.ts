@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 export async function POST(req: Request) {
-    console.log("Received a webhook request"); // Log when the request is received
+    console.log("Received a webhook request", req);
 
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
@@ -117,3 +117,4 @@ export async function POST(req: Request) {
 
     return new Response("", { status: 200 });
 }
+

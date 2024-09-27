@@ -9,13 +9,14 @@ export interface UpdateUserType {
 }
 
 export async function createUser(userInfo: UserType) {
-    console.log(userInfo);
+    // console.log(userInfo);
+    console.log("Received a webhook request for create", userInfo);
     const newUser = { _id: "INVALID" }
     return newUser;
 }
 export async function updateUser(userId: string, userInfo: UpdateUserType) {
-    console.log(userInfo, userId);
+    console.log("Received a webhook request for update", userInfo, userId);
 }
 export async function deleteUser(userId: string) {
-    console.log(userId);
+    console.log("Received a webhook request for delete", userId);
 }
