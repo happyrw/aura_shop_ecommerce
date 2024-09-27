@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "./globals.css";
-import NavigationBar from "@/components/NavigationBar";
-import Footer from "@/components/Footer";
+import { StateContext } from "@/context/stateContext";
+import { ClerkProvider } from "@clerk/nextjs";
 
 const inter = Inter({ subsets: ["latin"], variable: '--font-inter' });
 const ibmPlexSerif = IBM_Plex_Serif({
@@ -25,14 +25,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <html lang="en">
-      <body
-        className={`${inter.variable} ${ibmPlexSerif.variable}`}
-      >
-        <NavigationBar />
-        {children}
-        <Footer />
-      </body>
+      <ClerkProvider>
+        <StateContext>
+          <body className={`${inter.variable} ${ibmPlexSerif.variable}`}>
+            {children}
+          </body>
+        </StateContext>
+      </ClerkProvider>
     </html>
   );
 }
