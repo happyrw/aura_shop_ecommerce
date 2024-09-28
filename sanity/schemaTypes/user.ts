@@ -47,6 +47,7 @@ const userSchema = {
             name: "creator",
             title: "Creator",
             type: "boolean",
+            initialValue: false,
         },
     ]
 }
