@@ -5,7 +5,6 @@ import { NextResponse } from "next/server";
 import { Webhook } from "svix";
 
 export async function POST(req: Request) {
-    console.log("Received a webhook request", req);
 
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
 
@@ -22,7 +21,6 @@ export async function POST(req: Request) {
     const svix_signature = headerPayload.get("svix-signature");
 
     if (!svix_id || !svix_timestamp || !svix_signature) {
-        console.log("Missing Svix headers", { svix_id, svix_timestamp, svix_signature }); // Log missing headers
         return new Response("Error occured -- no svix headers", {
             status: 400,
         });
@@ -44,7 +42,6 @@ export async function POST(req: Request) {
             "svix-timestamp": svix_timestamp,
             "svix-signature": svix_signature,
         }) as WebhookEvent;
-        console.log("Webhook verified successfully:", evt); // Log successful verification
     } catch (err) {
         console.error("Error verifying webhook:", err);
         return new Response("Error occurred", {
